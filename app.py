@@ -7,6 +7,8 @@ import base64 # Import base64 library
 import os
 import random # For randomization
 
+
+
 # For rembg-specific error handling
 try:
     from rembg.bg import RembgError
@@ -50,5 +52,5 @@ def process_image_endpoint():
         return jsonify({"error": "An internal server error occurred."}), 500
 
 if __name__ == '__main__':
-    # For production, use environment variables or a config file to manage settings like DEBUG mode
-    app.run(debug=True, port=5000)  
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
